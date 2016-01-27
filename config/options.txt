@@ -36,3 +36,6 @@ AutoSummon = yes
 
 ; Play random songs when nothing is queued
 UseAutoPlaylist = yes
+
+; Add whatever songs are played to the AutoPlaylist
+IncrementalAutoPlaylist = yes

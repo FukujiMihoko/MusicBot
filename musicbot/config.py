@@ -20,6 +20,7 @@ class Config(object):
         self.now_playing_mentions = config.getboolean('MusicBot', 'NowPlayingMentions', fallback=True)
         self.auto_summon = config.getboolean('MusicBot', 'AutoSummon', fallback=True)
         self.auto_playlist = config.getboolean('MusicBot', 'UseAutoPlaylist', fallback=True)
+        self.auto_incrementalplaylist = config.getboolean('MusicBot', 'IncrementalAutoPlaylist', fallback=True)
 
         self.blacklist_file = config.get('Files', 'BlacklistFile', fallback='config/blacklist.txt')
         self.whitelist_file = config.get('Files', 'WhitelistFile', fallback='config/whitelist.txt')

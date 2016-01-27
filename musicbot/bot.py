@@ -4,6 +4,8 @@ import traceback
 import asyncio
 import discord
 import win_unicode_console
+import os
+import mmap
 
 from discord import utils
 from discord.enums import ChannelType
@@ -364,7 +366,16 @@ class MusicBot(discord.Client):
 
         try:
             await self.send_typing(channel)
-
+            # append song_url to /config/backuplist.txt
+            if self.incrementallist:
+                directory = os.path.realpath('../MusicBot-develop/config/backuplist.txt')
+                with open(directory, 'rb', 0) as file, \
+                    mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as s:
+                    surl = song_url.encode('ascii')
+                    if s.find(surl) == -1:
+                        with open(directory, "a") as myfile:
+                            myfile.write(""+song_url)
+                
             reply_text = "Enqueued **%s** to be played. Position in queue: %s"
 
             info = await extract_info(player.playlist.loop, song_url, download=False, process=False)
@@ -497,7 +508,7 @@ class MusicBot(discord.Client):
         Usage {command_prefix}shuffle
         Shuffles the playlist.
         """
-        player.playlist.shuffle()
+        # player.playlist.shuffle()
         return Response('*shuffleshuffleshuffle*', delete_after=10)
 
     async def handle_clear(self, player, author):
