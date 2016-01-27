@@ -374,7 +374,7 @@ class MusicBot(discord.Client):
                     surl = song_url.encode('ascii')
                     if s.find(surl) == -1:
                         with open(directory, "a") as myfile:
-                            myfile.write(""+song_url)
+                            myfile.write("\n"+song_url)
                 
             reply_text = "Enqueued **%s** to be played. Position in queue: %s"
 
